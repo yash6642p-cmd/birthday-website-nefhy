@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday meri honeyBEE😁❤️✨</title>
+    <style>
+.memory-img {
+    width: 250px;       /* har image ki fixed width */
+    height: 250px;      /* har image ki fixed height */
+    object-fit: cover;  /* photo ko crop karke neat square banayega */
+    border-radius: 15px; /* thoda rounded corners */
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* halka shadow effect */
+}
+</style>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Page container */
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .page.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .page.prev {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+        
+        /* Floating particles background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Page 1: Initial Question */
+        .welcome-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            animation: welcomePulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes welcomePulse {
+            from {
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 30px rgba(255, 255, 255, 0.1);
+            }
+            to {
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 0 50px rgba(255, 255, 255, 0.2);
+            }
+        }
+        
+        .welcome-card h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 2rem;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            from {
+                text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
+            }
+            to {
+                text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 255, 255, 0.4);
+            }
+        }
+        
+        .question {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+        
+        .heart {
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin: 0 0.5rem;
+        }
+        
+        @keyframes heartbeat {
+            0%, 50%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            75% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .button-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .choice-btn {
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .yes-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            animation: yesGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes yesGlow {
+            from {
+                box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            }
+            to {
+                box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+            }
+        }
+        
+        .yes-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.7);
+        }
+        
+        .no-btn {
+            background: linear-gradient(45deg, #6c757d, #868e96);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+        }
+        
+        .no-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.6);
+        }
+        
+        /* Page 2: Photo Gallery */
+        .gallery-container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .gallery-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 3rem;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .memory-photo {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .memory-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .memory-photo:hover::before {
+            left: 100%;
+        }
+        
+        .memory-photo:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef, #ffecd2);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .photo-placeholder::after {
+            content: 'Click to upload your photo';
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 500;
+        }
+        
+        .memory-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .memory-description {
+            color: #555;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        .continue-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+        
+        /* Page 3: Gift Selection */
+        .gift-container {
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .gift-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 2rem;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gift-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+        }
+        
+        .gifts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .gift-option {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gift-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .gift-option:hover::before {
+            left: 100%;
+        }
+        
+        .gift-option:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-color: #ff6b6b;
+        }
+        
+        .gift-option.selected {
+            border-color: #ff6b6b;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            transform: scale(1.02);
+        }
+        
+        .gift-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .gift-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .gift-desc {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .reveal-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 1.3rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .reveal-btn.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .reveal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+        
+        /* Page 4: Final Reveal */
+        .reveal-container {
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .reveal-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reveal-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .reveal-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #667eea;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .selected-gift-display {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .selected-gift-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .selected-gift-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .meetup-info {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            color: white;
+            margin: 2rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .meetup-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .meetup-details {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        .final-message {
+            position: relative;
+            z-index: 1;
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+            margin-top: 2rem;
+        }
+        
+        /* Interactive elements */
+        .interactive-heart {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            z-index: 1000;
+            animation: floatHeart 3s ease-out forwards;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1.5);
+            }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .welcome-card h1 {
+                font-size: 2.8rem;
+            }
+            
+            .question {
+                font-size: 1.2rem;
+            }
+            
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .gallery-title, .gift-title, .reveal-title {
+                font-size: 2.5rem;
+            }
+            
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .gifts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .reveal-card {
+                padding: 2.5rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <!-- Page 1: Initial Question -->
+    <div class="page active" id="page1">
+        <div class="welcome-card">
+            <h1>Happy Birthday Beautiful!</h1>
+            <p class="question">kya tum chahti ho ki tumhara day me extra kuchupuchu banau😁😉💖?agr haa toh press yes😁<br> or if no toh try karke dekh le no jara 🤭❤️  <span class="heart">💖</span></p>
+            <div class="button-container">
+                <button class="choice-btn yes-btn" onclick="goToPage(2)">Yes! 💕</button>
+                <button class="choice-btn no-btn" id="noBtn" onclick="handleNo()">No</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Page 2: Photo Gallery -->
+    <div class="page" id="page2">
+        <div class="gallery-container">
+            <h2 class="gallery-title">Our Beautiful Memories</h2>
+            
+            <div class="photo-gallery">
+                <div class="memory-photo">
+                      <img src="my 143.jpg" alt="First Meeting" class="memory-img">
+                    
+                    <h3 class="memory-title">MY 143😁❤️</h3>
+                    <p class="memory-description">ye teri sabse phli photo jo tune mujhe bheji thi 😁aur phir jab tune mujhse pucha ki tune ss liya na toh me ekdam confidence k sath mana kiya ki nai toh 🙂‍↔️ per bhayi mujhe yaad h tere bhejte hi mere hath ese sat teri ki ss leliye jese ki ise sundar koii photo hi nai dekhi ho 🫠</p>
+                </div>
+                
+                <div class="memory-photo">
+                      <img src="Snapchat-1095902805 (2).jpg" alt="precious moment🫠" class="memory-img">
+                    <h3 class="memory-title">Precious moment🫠</h3>
+                    <p class="memory-description">vo tera pyar se meri god m bethna aur mera tujhe pyar se kissi karna bhot yaad aari h iss moment ki😣bas jaldi se jaldi aja meri god me vapis💖 </p>
+                </div>
+                
+                <div class="memory-photo">
+                     <img src="Snapchat-303539592 (2).jpg" alt="that perfect day" class="memory-img">
+                    <h3 class="memory-title">That Perfect Day</h3>
+                    <p class="memory-description">vo pyara sa din jab apn subah se leke dopher tk sath hote h aur phir ghr jate ese teri pyari si pic le pata hu thodi si chidchid, thodi si pyari,thodi si cutu,aur puri si meri 😁❤️😚</p>
+                </div>
+                
+                <div class="memory-photo">
+                     <img src="Snapchat-884928478 (2).jpg" alt="apni pyari memories" class="memory-img">
+                    <h3 class="memory-title">Kuch na kuch pyari chij try karte hue 🫠</h3>
+                    <p class="memory-description">pyare pyare filters try karna phir baad me tera natak karna ki achi nai aayi vo nai aayi aur baad me sab chod chad k jesi photo aayi usi se khush ho jana(vese sabse pyari photos hoti h vo😉❤️)</p>
+                </div>
+                
+                <div class="memory-photo">
+                    <img src="Snapchat-1072164443 (2).jpg" alt="apni pyari memories" class="memory-img">
+                    <h3 class="memory-title">Best photo 🫠❤️</h3>
+                    <p class="memory-description">ye photo yrr iti pyari h iti pyari ki har dusre din laga du story 😣💖💖 me toh ise frame karaunga shadi k baad 😁</p>
+                </div>
+                
+                <div class="memory-photo">
+                     <img src="Snapchat-1641894914 (2).jpg" alt="apni pyari memories" class="memory-img">
+                    <h3 class="memory-title">Meri kuchupuchu😘❤️</h3>
+                    <p class="memory-description">iss photo ko dekh k ek hi chij man me aati h vo h ki bas kha jaau tujhe 😬💕iti zada cute lagti h ese natak karti hui 🫠❤️</p>
+                </div>
+                <div class="memory-photo">
+                     <img src="Snapchat-1874377968 (2).jpg" alt="apni pyari memories" class="memory-img">
+                    <h3 class="memory-title">Tu h toh mujhe phir aur kya chahiye😚💕</h3>
+                    <p class="memory-description">pretty little baby my cutie pie tere ye nakhare karna mujhe pareshan karna mere liye sabse pyare moment h 💖💖</p>
+                </div>
+                <div class="memory-photo">
+                     <img src="Snapchat-1944393817 (2).jpg" alt="apni pyari memories" class="memory-img">
+                    <h3 class="memory-title">Husband vali feeling😣🫠❤️💖</h3>
+                    <p class="memory-description">vo tera mere shoulders pe sona ya pyar se sir rakhna😣me tujhe batnai skta kita zada acha lagta h mujhe aur khas kar ye chije public me karna ese dikhana ki me tera hu aur tu meri he he he best feeling 😁😘😘❤️❤️❤️</p>
+                </div>
+            </div>
+            
+            <button class="continue-btn" onclick="goToPage(3)">Choose Your Surprise Gift</button>
+        </div>
+    </div>
+    
+    <!-- Page 3: Gift Selection -->
+    <div class="page" id="page3">
+        <div class="gift-container">
+            <h2 class="gift-title">Pick Your Perfect Gift!</h2>
+            <p class="gift-subtitle">Choose what would make you happiest - I want this day to be all about you!</p>
+            
+            <div class="gifts-grid">
+                <div class="gift-option" data-gift="flowers" onclick="selectGift(this, 'flowers')">
+                    <div class="gift-emoji">🌹</div>
+                    <div class="gift-name">Beautiful Bouquet</div>
+                    <div class="gift-desc">ek pyara sa Bouquet jesa tune sirf serials me dekha h 😁</div>
+                </div>
+                
+                <div class="gift-option" data-gift="chocolate" onclick="selectGift(this, 'chocolate')">
+                    <div class="gift-emoji">🍫</div>
+                    <div class="gift-name">Luxury Chocolates</div>
+                    <div class="gift-desc">bhot sari badiya badiya chocolates 🤤😁</div>
+                </div>
+                
+                <div class="gift-option" data-gift="jewelry" onclick="selectGift(this, 'jewelry')">
+                    <div class="gift-emoji">💎</div>
+                    <div class="gift-name">Something Sparkly</div>
+                    <div class="gift-desc">A special piece of jewelry to remind you how precious you are to me my love 😚</div>
+                </div>
+                
+                <div class="gift-option" data-gift="lipgloss" onclick="selectGift(this, 'lipgloss')">
+                    <div class="gift-emoji">💄</div>
+                    <div class="gift-name">lip gloss</div>
+                    <div class="gift-desc">tere in tasty tasty lips ko aur sajane k liye kuch😁 taki me aur kha paau🤤 </div>
+                </div>
+                
+                <div class="gift-option" data-gift="experience" onclick="selectGift(this, 'experience')">
+                    <div class="gift-emoji">🎭</div>
+                    <div class="gift-name">Special Experience</div>
+                    <div class="gift-desc">A day out enjoying everything and doing whatever you want to and going wherever you want😘😚</div>
+                </div>
+                
+                <div class="gift-option" data-gift="surprise" onclick="selectGift(this, 'surprise')">
+                    <div class="gift-emoji">🎁</div>
+                    <div class="gift-name">Mystery Surprise</div>
+                    <div class="gift-desc">anything random out of these options 😁💖</div>
+                </div>
+            </div>
+            
+            <button class="reveal-btn" id="revealBtn" onclick="goToPage(4)">Reveal When We'll Meet!</button>
+        </div>
+    </div>
+    
+    <!-- Page 4: Final Reveal -->
+    <div class="page" id="page4">
+        <div class="reveal-container">
+            <div class="reveal-card">
+                <h2 class="reveal-title">Your Special Day Plan!</h2>
+                
+                <div class="selected-gift-display">
+                    <div class="selected-gift-emoji" id="selectedGiftEmoji">🎁</div>
+                    <div class="selected-gift-name" id="selectedGiftName">Your Amazing Gift</div>
+                </div>
+                
+                <div class="meetup-info">
+                    <h3 class="meetup-title">When & Where</h3>
+                    <div class="meetup-details">
+                        📅 <strong>next friday on 29th august at 8 A.M </strong><br>
+                        📍 <strong>Our favourite park😉</strong><br><br>
+                        I'll be there waiting with your gift but i want biggest smile in return 😁❤️! 
+            
+                    </div>
+                </div>
+                
+                <div class="final-message">
+                    I hope this little surprise made you smile today. You deserve all the happiness in the world my NEFHY 😘😘😚❤️😁, and I can't wait to hug you and give you 100 kisses when we meet!🫠
+                    <span class="heart">💕</span>
+                    <br><br>
+                    <strong> at last again ,Happy Birthday, Beautiful! 🎉</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        let selectedGift = null;
+        
+        // Gift data
+        const giftData = {
+            flowers: { emoji: '🌹', name: 'Beautiful Bouquet' },
+            chocolate: { emoji: '🍫', name: 'Luxury Chocolates' },
+            jewelry: { emoji: '💎', name: 'Something Sparkly' },
+            lipgloss: { emoji: '💄', name: 'lip gloss' },
+            experience: { emoji: '🎭', name: 'Special Experience' },
+            surprise: { emoji: '🎁', name: 'Mystery Surprise' }
+        };
+        
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                
+                particlesContainer.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 15000);
+            }, 300);
+        }
+        
+        // Handle "No" button clicks
+        function handleNo() {
+            noClickCount++;
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.querySelector('.yes-btn');
+            
+            if (noClickCount === 1) {
+                noBtn.innerHTML = 'Are you sure? 🥺';
+                noBtn.style.padding = '0.8rem 1.5rem';
+                yesBtn.style.padding = '1.4rem 3rem';
+            } else if (noClickCount === 2) {
+                noBtn.innerHTML = 'Really? 😢';
+                noBtn.style.padding = '0.6rem 1rem';
+                yesBtn.style.padding = '1.6rem 3.5rem';
+            } else if (noClickCount === 3) {
+                noBtn.innerHTML = 'Please? 💔';
+                noBtn.style.padding = '0.4rem 0.8rem';
+                noBtn.style.fontSize = '0.9rem';
+                yesBtn.style.padding = '1.8rem 4rem';
+                yesBtn.style.fontSize = '1.4rem';
+            } else {
+                // Force yes after multiple nos
+                goToPage(2);
+            }
+        }
+        
+        // Navigate between pages
+        function goToPage(pageNum) {
+            const currentPage = document.querySelector('.page.active');
+            const targetPage = document.getElementById(`page${pageNum}`);
+            
+            currentPage.classList.remove('active');
+            currentPage.classList.add('prev');
+            
+            setTimeout(() => {
+                targetPage.classList.add('active');
+            }, 100);
+            
+            // Add some celebration effects
+            createCelebrationHearts();
+        }
+        
+        // Select gift function
+        function selectGift(element, giftType) {
+            // Remove previous selection
+            document.querySelectorAll('.gift-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Select current gift
+            element.classList.add('selected');
+            selectedGift = giftType;
+            
+            // Enable reveal button
+            const revealBtn = document.getElementById('revealBtn');
+            revealBtn.classList.add('active');
+            
+            // Update final page with selected gift
+            document.getElementById('selectedGiftEmoji').textContent = giftData[giftType].emoji;
+            document.getElementById('selectedGiftName').textContent = giftData[giftType].name;
+        }
+        
+        // Create celebration hearts
+        function createCelebrationHearts() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'interactive-heart';
+                    heart.innerHTML = ['💖', '💕', '💗', '🌟', '✨'][Math.floor(Math.random() * 5)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = Math.random() * 100 + '%';
+                    heart.style.animationDelay = Math.random() * 1 + 's';
+                    
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 3000);
+                }, i * 100);
+            }
+        }
+        
+        // Create hearts on click
+        document.addEventListener('click', function(e) {
+            const heart = document.createElement('div');
+            heart.className = 'interactive-heart';
+            heart.innerHTML = ['💖', '💕', '💗'][Math.floor(Math.random() * 3)];
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        });
+        
+        // Add sparkle effects to photo placeholders
+        document.querySelectorAll('.photo-placeholder').forEach(placeholder => {
+            placeholder.addEventListener('click', function() {
+                // Simulate photo upload (you can replace this with actual file upload)
+                const fileInput = document.createElement('input');
+                fileInput.type = 'file';
+                fileInput.accept = 'image/*';
+                fileInput.style.display = 'none';
+                
+                fileInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            placeholder.style.backgroundImage = `url(${e.target.result})`;
+                            placeholder.style.backgroundSize = 'cover';
+                            placeholder.style.backgroundPosition = 'center';
+                            placeholder.innerHTML = '';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+                
+                document.body.appendChild(fileInput);
+                fileInput.click();
+                document.body.removeChild(fileInput);
+            });
+        });
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Add hover effects to memory photos
+            document.querySelectorAll('.memory-photo').forEach(photo => {
+                photo.addEventListener('mouseenter', function() {
+                    // Create sparkle effect
+                    for(let i = 0; i < 3; i++) {
+                        setTimeout(() => {
+                            const sparkle = document.createElement('div');
+                            sparkle.innerHTML = '✨';
+                            sparkle.style.position = 'absolute';
+                            sparkle.style.left = Math.random() * 100 + '%';
+                            sparkle.style.top = Math.random() * 100 + '%';
+                            sparkle.style.pointerEvents = 'none';
+                            sparkle.style.animation = 'floatHeart 2s ease-out forwards';
+                            sparkle.style.zIndex = '1000';
+                            sparkle.style.fontSize = '1.2rem';
+                            
+                            photo.appendChild(sparkle);
+                            
+                            setTimeout(() => sparkle.remove(), 2000);
+                        }, i * 200);
+                    }
+                });
+            });
+            
+            // Add pulse effect to gift options
+            setInterval(() => {
+                const giftOptions = document.querySelectorAll('.gift-option:not(.selected)');
+                if (giftOptions.length > 0) {
+                    const randomGift = giftOptions[Math.floor(Math.random() * giftOptions.length)];
+                    randomGift.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        randomGift.style.transform = '';
+                    }, 500);
+                }
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
